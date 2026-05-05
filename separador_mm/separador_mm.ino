@@ -4,8 +4,8 @@
 
 // ─── Configurações ────────────────────────────────────────────────────────────
 
-#define PIN_SDA       2
-#define PIN_SCL       15
+#define PIN_SDA       21
+#define PIN_SCL       22
 
 #define NUM_CORES     5
 #define NUM_AMOSTRAS  20
