@@ -4,6 +4,9 @@
 
 // ─── Configurações ────────────────────────────────────────────────────────────
 
+#define PIN_SDA       2
+#define PIN_SCL       15
+
 #define NUM_CORES     5
 #define NUM_AMOSTRAS  20
 #define LIMIAR_DIST   0.15f   // acima disso = cor não reconhecida
@@ -120,6 +123,8 @@ int classificar(float &menorDist) {
 void setup() {
   Serial.begin(115200);
   while (!Serial);  // aguarda porta serial (necessário em algumas placas)
+
+  Wire.begin(PIN_SDA, PIN_SCL);
 
   if (!tcs.begin()) {
     Serial.println(F("ERRO: TCS34725 nao encontrado! Verifique SDA/SCL e VCC."));
