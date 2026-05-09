@@ -4,8 +4,8 @@
 
 // ─── Configurações ────────────────────────────────────────────────────────────
 
-#define PIN_SDA       2
-#define PIN_SCL       15
+#define PIN_SDA       21
+#define PIN_SCL       22
 
 #define NUM_CORES     5
 #define NUM_AMOSTRAS  20
@@ -59,6 +59,9 @@ float distEuclidiana(float nr, float ng, float nb, int c) {
 // ─── Calibração ───────────────────────────────────────────────────────────────
 
 void calibrar() {
+  delay(500);
+  while (Serial.available()) Serial.read();
+
   Serial.println(F("\n========== MODO CALIBRAÇÃO =========="));
   Serial.println(F("Para cada cor: posicione o M&M sob o sensor e pressione ENTER.\n"));
 
@@ -68,21 +71,24 @@ void calibrar() {
     Serial.println(F(" e pressione ENTER..."));
     aguardarEnter();
 
+    Serial.println(F("    Aguardando 2s..."));
+    delay(2000);  // <-- delay antes de medir
+    Serial.println(F("    Medindo..."));
+
     float somaR = 0.0f, somaG = 0.0f, somaB = 0.0f;
 
-    for (int s = 0; s < NUM_AMOSTRAS; s++) {
+    for (int s = 0; s < 10; s++) {  // <-- 10 medições
       float nr, ng, nb;
       lerNormalizado(nr, ng, nb);
       somaR += nr;
       somaG += ng;
       somaB += nb;
-      delay(100);  // ~10 Hz, evita leituras redundantes dentro do período de integração
+      delay(100);
     }
 
-    // Média das amostras normalizadas — referência no espaço de cor normalizado
-    ref[c][0] = somaR / NUM_AMOSTRAS;
-    ref[c][1] = somaG / NUM_AMOSTRAS;
-    ref[c][2] = somaB / NUM_AMOSTRAS;
+    ref[c][0] = somaR / 10.0f;
+    ref[c][1] = somaG / 10.0f;
+    ref[c][2] = somaB / 10.0f;
 
     Serial.print(F("    Referencia "));
     Serial.print(nomesCores[c]);
