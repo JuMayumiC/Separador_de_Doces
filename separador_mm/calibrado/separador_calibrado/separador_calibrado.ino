@@ -13,11 +13,11 @@ const char* nomesCores[NUM_CORES] = {
 };
 
 float ref[NUM_CORES][3] = {
-  {0.7349f, 0.1525f, 0.1126f},  // Laranja
-  {0.4025f, 0.4184f, 0.1791f},  // Verde
-  {0.7381f, 0.1347f, 0.1272f},  // Vermelho
-  {0.5909f, 0.2878f, 0.1213f},  // Amarelo
-  {0.2721f, 0.3923f, 0.3356f},  // Azul
+  {0.7190f, 0.1716f, 0.1094f},  // Laranja
+  {0.3251f, 0.4162f, 0.2587f},  // Verde
+  {0.7197f, 0.1509f, 0.1294f},  // Vermelho
+  {0.5384f, 0.3352f, 0.1263f},  // Amarelo
+  {0.2506f, 0.3891f, 0.3603f},  // Azul
 };
 
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(
