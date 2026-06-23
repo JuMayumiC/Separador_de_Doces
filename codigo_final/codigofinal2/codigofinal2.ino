@@ -279,7 +279,7 @@ void loop() {
     Serial.println(totalProcessados);
     Serial.println("----------------------");
 
-    // Exibe placar no LCD por 2s
+    // Exibe placar no LCD por 4s
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print(nomesCores[cor]);
@@ -288,7 +288,7 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print("Total: ");
     lcd.print(totalProcessados);
-    delay(2000);
+    delay(4000);
 
   } else {
 
@@ -315,5 +315,5 @@ void loop() {
   lcd.setCursor(0, 0);
   lcd.print("Liberando...");
 
-  delay(7000);
+  delay(2000);
 }
